@@ -1,0 +1,206 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Simplex Data</title>
+    <script>
+        function generateFields() {
+            const numVars = parseInt(document.getElementById('num_vars').value || 0);
+            const numCons = parseInt(document.getElementById('num_constraints').value || 0);
+
+            // Generate inputs for objective function coefficients
+            let varsHtml = '<div><label>Coefficients of Objective Function (comma-separated):</label>' +
+                '<input type="text" name="c" required></div>';
+
+            // Generate inputs for each constraint
+            let consHtml = '';
+            for (let i = 1; i <= numCons; i++) {
+                consHtml += `<div><label>Constraint ${i} Coefficients (comma-separated):</label>` +
+                            `<input type="text" name="A${i}" required>` +
+                            `<label> = </label>` +
+                            `<input type="text" name="b${i}" required></div>`;
+            }
+
+            document.getElementById('variables_input').innerHTML = varsHtml;
+            document.getElementById('constraints_input').innerHTML = consHtml;
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Makes the padding not affect the width */
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Simplex Problem Details</h1>
+    <form method="post" action="{% url 'simplex_view' %}">
+        {% csrf_token %}
+        <div>
+            <label>Number of Variables:</label>
+            <input type="number" id="num_vars" name="num_vars" oninput="generateFields()" required>
+        </div>
+        <div>
+            <label>Number of Constraints:</label>
+            <input type="number" id="num_constraints" name="num_constraints" oninput="generateFields()" required>
+        </div>
+        <div id="variables_input">
+            <!-- Objective function inputs will be generated here >
+        </div>
+        <div id="constraints_input">
+            <!-- Constraint inputs will be generated here >
+        </div>
+        <div>
+            <label for="optimization_type">Optimization Type:</label>
+            <select name="optimization_type" id="optimization_type">
+                <option value="max">Maximize</option>
+                <option value="min">Minimize</option>
+            </select>
+        </div>
+        <button type="submit">Solve</button>
+    </form>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrer les données du Simplexe</title>
+    <script>
+        function generateFields() {
+            const numVars = parseInt(document.getElementById('num_vars').value || 0);
+            const numCons = parseInt(document.getElementById('num_constraints').value || 0);
+
+            // Générer les champs pour les coefficients de la fonction objectif
+            let varsHtml = '<div><label>Coefficients de la fonction objectif (séparés par des virgules) :</label>' +
+                '<input type="text" name="c" required></div>';
+
+            // Générer les champs pour chaque contrainte
+            let consHtml = '';
+            for (let i = 1; i <= numCons; i++) {
+                consHtml += `<div><label>Contrainte ${i} Coefficients (séparés par des virgules) :</label>` +
+                            `<input type="text" name="A${i}" required>` +
+                            `<label> = </label>` +
+                            `<input type="text" name="b${i}" required></div>`;
+            }
+
+            document.getElementById('variables_input').innerHTML = varsHtml;
+            document.getElementById('constraints_input').innerHTML = consHtml;
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Permet que le padding n'affecte pas la largeur */
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <h1>Entrer les détails du problème de Simplexe</h1>
+    <form method="post" action="{% url 'simplex_view' %}">
+        {% csrf_token %}
+        <div>
+            <label>Nombre de variables :</label>
+            <input type="number" id="num_vars" name="num_vars" oninput="generateFields()" required>
+        </div>
+        <div>
+            <label>Nombre de contraintes :</label>
+            <input type="number" id="num_constraints" name="num_constraints" oninput="generateFields()" required>
+        </div>
+        <div id="variables_input">
+            <!-- Les entrées pour la fonction objectif seront générées ici -->
+        </div>
+        <div id="constraints_input">
+            <!-- Les entrées pour les contraintes seront générées ici -->
+        </div>
+        <div>
+            <label for="optimization_type">Type d'optimisation :</label>
+            <select name="optimization_type" id="optimization_type">
+                <option value="max">Maximiser</option>
+                <option value="min">Minimiser</option>
+            </select>
+        </div>
+        <button type="submit">Résoudre</button>
+    </form>
+</body>
+</html>

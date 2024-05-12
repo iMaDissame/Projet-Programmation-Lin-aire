@@ -1,0 +1,212 @@
+<!-- 
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simplex Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+   <h1>Simplex Method Results</h1>
+    <h2>Optimal Solution</h2>
+    <p>The best value for your objective is z = {{ objective_value|floatformat:2 }}</p>
+    <ul>
+        {% for var, value in final_values.items %}
+        <li>{{ var }} = {{ value|floatformat:2 }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Tableau Iterations</h2>
+    {% for iteration in iterations %}
+        <h3>Iteration {{ forloop.counter }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    {% for var in all_vars %}
+                    <th>{{ var }}</th>
+                    {% endfor %}
+                    <th>b</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in iteration.tableau %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>Basic Variables and their values:
+            <ul>
+                {% for var, value in iteration.basic_and_values %}
+                <li>{{ var }} = {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>Non-basic Variables and their values:
+            <ul>
+                {% for var, value in iteration.non_basic_vars %}
+                <li>{{ var }} = {{ value|floatformat:2 }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</body>
+</html>  -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats Simplexe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+   <h1>Résultats de la Méthode Simplexe</h1>
+    <h2>Solution Optimale</h2>
+    <p>La meilleure valeur pour votre objectif est z = {{ objective_value|floatformat:2 }}</p>
+    <ul>
+        {% for var, value in final_values.items %}
+        <li>{{ var }} = {{ value|floatformat:2 }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Itérations du Tableau</h2>
+    {% for iteration in iterations %}
+        <h3>Itération {{ forloop.counter }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    {% for var in all_vars %}
+                    <th>{{ var }}</th>
+                    {% endfor %}
+                    <th>b</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in iteration.tableau %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>Variables de base et leurs valeurs :
+            <ul>
+                {% for var, value in iteration.basic_and_values %}
+                <li>{{ var }} = {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>Variables hors base et leurs valeurs :
+            <ul>
+                {% for var, value in iteration.non_basic_vars %}
+                <li>{{ var }} = {{ value|floatformat:2 }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</body>
+</html> 
